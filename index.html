@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>flex dollar budget calculator</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <script defer>
+    function recalculateFLEX() {
+
+      const initialFLEXElement = document.getElementById("initial");
+      const endDaysElement = document.getElementById("end");
+      const finalFLEXElement = document.getElementById("final");
+      const breaksElement = document.getElementById("breaks");
+      const durationElement = document.getElementById("duration");
+      finalFLEXElement.value = `$${(Math.floor((initialFLEXElement.value / (endDaysElement.value - breaksElement.value)) * durationElement.value * 100) / 100).toFixed(2)}`;
+      
+    }
+    recalculateFLEX();
+  </script>
+  <body>
+    <section>
+      <label>Current number of FLEX Dollars</label>
+      <input type="number" oninput="recalculateFLEX();" id="initial" value="0" />
+    </section>
+    <section>
+      <label>Number of days until the semester ends</label>
+      <input type="number" oninput="recalculateFLEX();" id="end" value="0" />
+    </section>
+    <section>
+      <label>Number of days out of campus (i.e. Spring Break)</label>
+      <input type="number" oninput="recalculateFLEX();" id="breaks" value="0" />
+    </section>
+    <br />
+    <section>
+      <label>You can spend</label>
+      <input type="text" disabled id="final" value="$0" /> per 
+      
+      <select id="duration" onchange="recalculateFLEX();">
+        <option value="1">day</option>
+        <option value="7">week</option>
+      </select>
+    </section>
+    
+  </body>
+</html>
